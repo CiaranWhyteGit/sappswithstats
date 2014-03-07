@@ -11,7 +11,7 @@ public class Sapp {
         this.region = region;
         this.summonerId = getSummonerId(summoner_name, region);
         FiveVsFiveRankedStats fiveVsFiveRankedStats = new FiveVsFiveRankedStats(this.summonerId,region);
-        FiveVsFiveUnRankedStats fiveVsFiveUnRankedStats = new FiveVsFiveUnRankedStats();
+        FiveVsFiveUnRankedStats fiveVsFiveUnRankedStats = new FiveVsFiveUnRankedStats(this.summonerId,region);
     }
 
     private String getSummonerId(String summoner_name, String region) {
