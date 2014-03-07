@@ -6,6 +6,10 @@ import com.sapps.lolstats.Sapp;
 public class SappPrinter {
     public static void main(String args[]){
         Sapp mordo = new Sapp("mordo");
-        System.out.println(mordo.toString());
+        mordo.printDetailsToLog();
+        Sapp theWiggler = new Sapp("thewiggler");
+        theWiggler.printDetailsToLog();
+        Sapp burpeeStarjump = new Sapp("burpeestarjump");
+        burpeeStarjump.printDetailsToLog();
     }
 }
