@@ -1,5 +1,6 @@
 package com.sapps.lolstats;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,23 +18,18 @@ public class RecentGameStats {
         this.summonerId = summonerId;
         this.region = region;
         this.riotRestClient = riotRestClient;
-        try {
-            getRecentGameStats(summonerId, region);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        JSONArray recentGameStats = new JSONObject(getRecentGameStats()).getJSONArray("games");
+        for (int i = 0; i < recentGameStats.length(); i++) {
+            JSONObject game = recentGameStats.getJSONObject(i);
+            logger.warning("Champion Id:" + String.valueOf(game.getInt("championId")));
         }
     }
 
-    public String getRecentGameStats(String summonerId, String region) throws JSONException {
-        String apiRequest = "https://prod.api.pvp.net/api/lol/" + region + "/v1.3/game/by-summoner/" + summonerId + "/recent?api_key=" + riotRestClient.getDevKey();
-        logger.warning("Calling " + apiRequest);
-        String recentGameStatsJson = riotRestClient.getRiotApiString(apiRequest);
-        logger.warning(recentGameStatsJson);
-        try {
-            return String.valueOf(new JSONObject(recentGameStatsJson));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public String getRecentGameStats() {
+        String apiRequest = "https://prod.api.pvp.net/api/lol/" + this.region + "/v1.3/game/by-summoner/" + this.summonerId + "/recent?api_key=" + riotRestClient.getDevKey();
+        logger.info("Calling " + apiRequest);
+        String recentGameStatsJson = RiotRestClient.getRiotApiString(apiRequest);
+        logger.info(recentGameStatsJson);
+        return recentGameStatsJson;
     }
 }
