@@ -8,9 +8,9 @@ public class SappPrinter {
     public static void main(String args[]) throws JSONException {
         Sapp mordo = new Sapp("mordo");
         mordo.printDetailsToLog();
-//        Sapp theWiggler = new Sapp("thewiggler");
-//        theWiggler.printDetailsToLog();
-//        Sapp burpeeStarjump = new Sapp("burpeestarjump");
-//        burpeeStarjump.printDetailsToLog();
+        Sapp theWiggler = new Sapp("thewiggler");
+        theWiggler.printDetailsToLog();
+        Sapp burpeeStarjump = new Sapp("burpeestarjump");
+        burpeeStarjump.printDetailsToLog();
     }
 }
