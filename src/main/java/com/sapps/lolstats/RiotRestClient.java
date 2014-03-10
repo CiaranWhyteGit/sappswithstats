@@ -30,7 +30,7 @@ public class RiotRestClient {
 
     public String getSummonerId(String summoner_name, String region) throws JSONException {
         String apiRequest = "https://prod.api.pvp.net/api/lol/" + region + "/v1.3/summoner/by-name/" + summoner_name + "?api_key=" + getDevKey();
-        logger.info("Calling " + apiRequest);
+        //logger.info("Calling " + apiRequest);
         String summonerIdJson = getRiotApiString(apiRequest);
         try {
             return String.valueOf(new JSONObject(summonerIdJson)
@@ -42,6 +42,17 @@ public class RiotRestClient {
         return null;
     }
 
+    public String getChampById(int champId){
+        String apiRequest = "https://prod.api.pvp.net/api/lol/static-data/euw/v1/champion/"+String.valueOf(champId)+"?champData=image&api_key=" + getDevKey();
+        //logger.info("Calling " + apiRequest);
+        String champIdJson = getRiotApiString(apiRequest);
+        try{
+            return String.valueOf(new JSONObject(champIdJson).get("id"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     //todo: Read this value from a properties file or db
     public String getDevKey() {
