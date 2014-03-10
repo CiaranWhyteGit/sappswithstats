@@ -13,7 +13,7 @@ public class RecentGameStats {
     private final Logger logger = Logger.getLogger(RecentGameStats.class.getName());
     private String summonerId, region;
     private RiotRestClient riotRestClient;
-    private int championId,wins = 0,losses = 0;
+    private int championId, wins = 0, losses = 0;
 
     public RecentGameStats(String summonerId, String region, RiotRestClient riotRestClient) throws JSONException {
         this.summonerId = summonerId;
@@ -24,13 +24,9 @@ public class RecentGameStats {
         for (int i = 0; i < recentGameStats.length(); i++) {
             JSONObject game = recentGameStats.getJSONObject(i);
             this.championId = game.getInt("championId");
-            //logger.warning("Champion Id:" + String.valueOf(this.championId));
 
-            if(game.getJSONObject("stats").getBoolean("win")){
-                wins++;
-            } else {
-                losses++;
-            }
+            if (game.getJSONObject("stats").getBoolean("win")) wins++;
+            else losses++;
 
             logger.info("\n\n\tChampion Name: " + riotRestClient.getChampById(this.championId) + "\n\tWin: " + String.valueOf(wins) + "\n\tLosses: " + String.valueOf(losses) + "\n");
         }

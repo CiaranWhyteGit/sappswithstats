@@ -42,11 +42,11 @@ public class RiotRestClient {
         return null;
     }
 
-    public String getChampById(int champId){
-        String apiRequest = "https://prod.api.pvp.net/api/lol/static-data/euw/v1/champion/"+String.valueOf(champId)+"?champData=image&api_key=" + getDevKey();
+    public String getChampById(int champId) {
+        String apiRequest = "https://prod.api.pvp.net/api/lol/static-data/euw/v1/champion/" + String.valueOf(champId) + "?champData=image&api_key=" + getDevKey();
         //logger.info("Calling " + apiRequest);
         String champIdJson = getRiotApiString(apiRequest);
-        try{
+        try {
             return String.valueOf(new JSONObject(champIdJson).get("id"));
         } catch (JSONException e) {
             e.printStackTrace();
