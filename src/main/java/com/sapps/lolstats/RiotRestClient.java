@@ -3,7 +3,6 @@ package com.sapps.lolstats;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.logging.Logger;
@@ -28,7 +27,7 @@ public class RiotRestClient {
         return response.getEntity(String.class);
     }
 
-    public String getSummonerId(String summoner_name, String region) throws JSONException {
+    public String getSummonerId(String summoner_name, String region) throws Exception {
         String apiRequest = "https://prod.api.pvp.net/api/lol/" + region + "/v1.3/summoner/by-name/" + summoner_name + "?api_key=" + getDevKey();
         //logger.info("Calling " + apiRequest);
         String summonerIdJson = getRiotApiString(apiRequest);
@@ -36,7 +35,7 @@ public class RiotRestClient {
             return String.valueOf(new JSONObject(summonerIdJson)
                     .getJSONObject(summoner_name)
                     .getInt("id"));
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -48,7 +47,7 @@ public class RiotRestClient {
         String champIdJson = getRiotApiString(apiRequest);
         try {
             return String.valueOf(new JSONObject(champIdJson).get("id"));
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;

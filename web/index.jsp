@@ -7,10 +7,27 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title></title>
-  </head>
-  <body>
+</head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#SappHistory').onload(function() {
+            $.get('SappHistory', function(responseText) {
+                $('#list').html(responseText);
+            });
+        });
+    });
+</script>
+<body>
+    <div id='header' style='display:inline'>
+        <ul style='display:inline'>
+            <li><a id="SappHistory" href="#">SappHistory</a></li>
+        </ul>
+    </div>
+    <div id="list">
 
-  </body>
+    </div>
+</body>
 </html>

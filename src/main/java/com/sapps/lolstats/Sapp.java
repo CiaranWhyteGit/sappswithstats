@@ -1,7 +1,5 @@
 package com.sapps.lolstats;
 
-import org.json.JSONException;
-
 import java.util.logging.Logger;
 
 /**
@@ -15,7 +13,7 @@ public class Sapp {
     public FiveVsFiveUnRankedStats fiveVsFiveUnRankedStats;
     public RecentGameStats recentGameStats;
 
-    public Sapp(String summoner_name, String region) throws JSONException {
+    public Sapp(String summoner_name, String region) throws Exception {
         RiotRestClient riotRestClient = new RiotRestClient();
         this.region = region;
         this.summoner_name = summoner_name;
@@ -25,7 +23,7 @@ public class Sapp {
         this.recentGameStats = new RecentGameStats(this.summonerId, region, riotRestClient);
     }
 
-    public Sapp(String summoner_name) throws JSONException {
+    public Sapp(String summoner_name) throws Exception {
         this(summoner_name, "euw");
     }
 
